@@ -1,5 +1,5 @@
 import { Consumer, EachMessagePayload, Kafka } from "kafkajs";
-import { MessageBroker } from "../types/broker";
+import { MessageBroker, MessageHandler } from "../types/broker";
 
 export class KafkaBroker implements MessageBroker {
   private consumer: Consumer;
@@ -10,21 +10,19 @@ export class KafkaBroker implements MessageBroker {
     this.consumer = kafka.consumer({ groupId: clientId });
   }
 
-  /**
-   * Connect the consumer
-   */
   async connectConsumer() {
     await this.consumer.connect();
   }
 
-  /**
-   * Disconnect the consumer
-   */
   async disconnectConsumer() {
     await this.consumer.disconnect();
   }
 
-  async consumeMessage(topics: string[], fromBeginning: boolean = false) {
+  async consumeMessage(
+    topics: string[],
+    fromBeginning: boolean = false,
+    handler: MessageHandler,
+  ) {
     await this.consumer.subscribe({ topics, fromBeginning });
 
     await this.consumer.run({
@@ -33,11 +31,13 @@ export class KafkaBroker implements MessageBroker {
         partition,
         message,
       }: EachMessagePayload) => {
-        // Logic to handle incoming messages.
-        console.log({
-          value: message.value.toString(),
+        await handler({
           topic,
           partition,
+          offset: message.offset,
+          key: message.key?.toString() ?? null,
+          value: message.value?.toString() ?? null,
+          headers: message.headers as Record<string, string | undefined>,
         });
       },
     });
