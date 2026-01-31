@@ -1,9 +1,10 @@
 import winston from "winston";
+import { Config } from "./index";
 
 const logger = winston.createLogger({
   level: "info",
   defaultMeta: {
-    serviceName: "web-socket-service",
+    serviceName: "notification-service",
   },
   format: winston.format.combine(
     winston.format.timestamp(),
@@ -14,17 +15,17 @@ const logger = winston.createLogger({
       dirname: "logs",
       filename: "combined.log",
       level: "info",
-      silent: process.env.NODE_ENV === "test",
+      silent: Config.LOG_SILENT,
     }),
     new winston.transports.File({
       dirname: "logs",
       filename: "error.log",
       level: "error",
-      silent: process.env.NODE_ENV === "test",
+      silent: Config.LOG_SILENT,
     }),
     new winston.transports.Console({
       level: "info",
-      silent: process.env.NODE_ENV === "test",
+      silent: Config.LOG_SILENT,
     }),
   ],
 });
