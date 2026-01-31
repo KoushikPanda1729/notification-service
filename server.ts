@@ -1,11 +1,16 @@
 import logger from "./src/config/logger";
 import { createMessageBroker } from "./src/factories/broker-factory";
+import { createNotificationManager } from "./src/factories/notification-factory";
 import { handleMessage } from "./src/config/messageHandler";
 import { MessageBroker } from "./src/types/broker";
 
 const startServer = async () => {
   let broker: MessageBroker | null = null;
   try {
+    // Initialize notification manager
+    createNotificationManager();
+    logger.info("Notification manager initialized");
+
     broker = createMessageBroker();
     await broker.connectConsumer();
     logger.info("Kafka consumer connected");
