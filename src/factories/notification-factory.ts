@@ -12,7 +12,7 @@ import {
 
 // Email Providers
 import { NodemailerProvider } from "../notifications/providers/email/nodemailer.provider";
-// Add more email providers here: import { SendGridProvider } from "...";
+import { SesProvider } from "../notifications/providers/email/ses.provider";
 
 // SMS Providers
 import { TwilioSmsProvider } from "../notifications/providers/sms/twilio-sms.provider";
@@ -39,9 +39,18 @@ function createEmailProvider(): INotificationProvider<EmailNotification> {
         fromEmail: Config.NODEMAILER.FROM_EMAIL,
       });
 
-    // Add more cases when you add new providers:
-    // case "sendgrid":
-    //   return new SendGridProvider({ apiKey: Config.SENDGRID.API_KEY });
+    case "ses":
+      return new SesProvider({
+        host: Config.SES.HOST,
+        port: Config.SES.PORT,
+        secure: Config.SES.SECURE,
+        region: Config.SES.REGION,
+        auth: {
+          user: Config.SES.AUTH.USER,
+          pass: Config.SES.AUTH.PASS,
+        },
+        fromEmail: Config.SES.FROM_EMAIL,
+      });
 
     default:
       throw new Error(`Unknown email provider: ${Config.EMAIL_PROVIDER}`);

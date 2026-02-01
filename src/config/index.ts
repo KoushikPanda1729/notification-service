@@ -17,6 +17,17 @@ export const Config = {
     },
     FROM_EMAIL: config.get<string>("notifications.email.nodemailer.fromEmail"),
   },
+  SES: {
+    HOST: config.get<string>("notifications.email.ses.host"),
+    PORT: config.get<number>("notifications.email.ses.port"),
+    SECURE: config.get<boolean>("notifications.email.ses.secure"),
+    REGION: config.get<string>("notifications.email.ses.region"),
+    AUTH: {
+      USER: config.get<string>("notifications.email.ses.auth.user"),
+      PASS: config.get<string>("notifications.email.ses.auth.pass"),
+    },
+    FROM_EMAIL: config.get<string>("notifications.email.ses.fromEmail"),
+  },
 
   // SMS Provider Config
   SMS_PROVIDER: config.get<string>("notifications.sms.provider"),
