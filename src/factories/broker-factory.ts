@@ -5,7 +5,7 @@ import { MessageBroker } from "../types/broker";
 let broker: MessageBroker | null = null;
 
 export const createMessageBroker = (): MessageBroker => {
-  // singleton
+  // singletons
   if (!broker) {
     broker = new KafkaBroker(
       Config.KAFKA_CLIENT_ID,
