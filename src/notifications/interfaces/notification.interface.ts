@@ -1,4 +1,4 @@
-// Base notification payload that all notification types will extend
+// Base notification payload that all notification types will extends
 export interface BaseNotification {
   to: string;
   subject?: string;
