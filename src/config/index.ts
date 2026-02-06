@@ -5,7 +5,7 @@ export const Config = {
   KAFKA_BROKER: config.get<string>("kafka.broker"),
   LOG_SILENT: config.get<boolean>("logging.silent"),
 
-  // Email Provider Config
+  // Email Provider Config for test
   EMAIL_PROVIDER: config.get<string>("notifications.email.provider"),
   NODEMAILER: {
     HOST: config.get<string>("notifications.email.nodemailer.host"),
