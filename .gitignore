@@ -129,4 +129,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-/config
+# Keep config files but ignore local overrides
+config/local.yaml
+config/local-*.yaml

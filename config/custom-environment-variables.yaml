@@ -1,0 +1,49 @@
+kafka:
+  clientId: "KAFKA_CLIENT_ID"
+  broker: "KAFKA_BROKER"
+  sasl:
+    mechanism: "KAFKA_SASL_MECHANISM"
+    username: "KAFKA_SASL_USERNAME"
+    password: "KAFKA_SASL_PASSWORD"
+
+logging:
+  silent: "LOG_SILENT"
+
+frontend:
+  url: "FRONTEND_URL"
+  orderPath: "FRONTEND_ORDER_PATH"
+
+notifications:
+  email:
+    provider: "NOTIFICATION_EMAIL_PROVIDER"
+    nodemailer:
+      host: "SMTP_HOST"
+      port: "SMTP_PORT"
+      secure: "SMTP_SECURE"
+      auth:
+        user: "SMTP_USER"
+        pass: "SMTP_PASSWORD"
+      fromEmail: "SMTP_FROM"
+    ses:
+      host: "SES_HOST"
+      port: "SES_PORT"
+      secure: "SES_SECURE"
+      region: "SES_REGION"
+      auth:
+        user: "SES_USER"
+        pass: "SES_PASSWORD"
+      fromEmail: "SES_FROM"
+
+  sms:
+    provider: "NOTIFICATION_SMS_PROVIDER"
+    twilio:
+      accountSid: "TWILIO_ACCOUNT_SID"
+      authToken: "TWILIO_AUTH_TOKEN"
+      fromNumber: "TWILIO_FROM_NUMBER"
+
+  push:
+    provider: "NOTIFICATION_PUSH_PROVIDER"
+    firebase:
+      projectId: "FIREBASE_PROJECT_ID"
+      privateKey: "FIREBASE_PRIVATE_KEY"
+      clientEmail: "FIREBASE_CLIENT_EMAIL"

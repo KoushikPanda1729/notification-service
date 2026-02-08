@@ -1,0 +1,49 @@
+kafka:
+  clientId: "notification-service"
+  broker: ""
+  sasl:
+    mechanism: "plain"
+    username: ""
+    password: ""
+
+logging:
+  silent: false
+
+frontend:
+  url: "http://localhost:3001"
+  orderPath: "/orders"
+
+notifications:
+  email:
+    provider: "nodemailer"
+    nodemailer:
+      host: ""
+      port: 465
+      secure: true
+      auth:
+        user: ""
+        pass: ""
+      fromEmail: ""
+    ses:
+      host: ""
+      port: 587
+      secure: false
+      region: "us-east-1"
+      auth:
+        user: ""
+        pass: ""
+      fromEmail: ""
+
+  sms:
+    provider: "twilio"
+    twilio:
+      accountSid: ""
+      authToken: ""
+      fromNumber: ""
+
+  push:
+    provider: "firebase"
+    firebase:
+      projectId: ""
+      privateKey: ""
+      clientEmail: ""
