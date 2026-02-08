@@ -1,0 +1,38 @@
+kafka:
+  clientId: "notification-service"
+  broker: "localhost:9092"
+
+logging:
+  silent: false
+
+# Frontend URL for order links
+frontend:
+  url: "http://localhost:3001"
+  orderPath: "/orders"
+
+# Notification Providers Configuration
+notifications:
+  email:
+    provider: "nodemailer"
+    nodemailer:
+      host: "smtp.ethereal.email"
+      port: 587
+      secure: false
+      auth:
+        user: "zachery.beahan26@ethereal.email"
+        pass: "vNdhKVtrStc4Qst3rX"
+      fromEmail: "zachery.beahan26@ethereal.email"
+
+  sms:
+    provider: "twilio"
+    twilio:
+      accountSid: ""
+      authToken: ""
+      fromNumber: ""
+
+  push:
+    provider: "firebase"
+    firebase:
+      projectId: ""
+      privateKey: ""
+      clientEmail: ""
