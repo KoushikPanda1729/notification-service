@@ -10,7 +10,7 @@ import {
   PushNotification,
 } from "../notifications/interfaces/notification.interface";
 
-// Email Providers
+// Email Provider
 import { NodemailerProvider } from "../notifications/providers/email/nodemailer.provider";
 import { SesProvider } from "../notifications/providers/email/ses.provider";
 
