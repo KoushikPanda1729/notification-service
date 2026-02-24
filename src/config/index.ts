@@ -3,13 +3,16 @@ import config from "config";
 export const Config = {
   KAFKA_CLIENT_ID: config.get<string>("kafka.clientId"),
   KAFKA_BROKER: config.get<string>("kafka.broker"),
-  KAFKA_SASL: config.has("kafka.sasl")
-    ? config.get<{
-        mechanism: "plain" | "scram-sha-256" | "scram-sha-512";
-        username: string;
-        password: string;
-      }>("kafka.sasl")
-    : null,
+  KAFKA_SASL: (() => {
+    if (!config.has("kafka.sasl")) return null;
+    const sasl = config.get<{
+      mechanism: "plain" | "scram-sha-256" | "scram-sha-512";
+      username: string;
+      password: string;
+    } | null>("kafka.sasl");
+    if (!sasl || !sasl.username || !sasl.password) return null;
+    return sasl;
+  })(),
   LOG_SILENT: config.get<boolean>("logging.silent"),
 
   // Email Provider Config for test

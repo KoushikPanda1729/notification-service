@@ -1,6 +1,7 @@
 kafka:
   clientId: "notification-service"
   broker: "localhost:9092"
+  sasl: null
 
 logging:
   silent: false
